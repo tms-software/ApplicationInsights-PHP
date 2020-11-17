@@ -87,12 +87,11 @@ class Utils
     {
         if ($time == NULL)
         {
-            return gmdate('c') . 'Z';
+            $time = microtime(true);
         }
-        else
-        {
-            return gmdate('c', $time) . 'Z';
-        }
+        $microseconds = floor(($time - floor($time)) * 10000000);
+        $date = gmdate("Y-m-dTH:i:s.",$time);
+        return $date.$microseconds.'Z';
     }
     
     /**
